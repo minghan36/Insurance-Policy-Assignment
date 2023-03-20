@@ -1,15 +1,27 @@
 package nz.ac.auckland.se281;
-
+import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
+
+  private ArrayList profileList = new ArrayList();
+
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).
   }
 
   public void printDatabase() {
+
+    int numberOfProfiles = profileList.size();
+    if (numberOfProfiles == 0){
+      
+
+    } 
+    
+    }
+
+    
     // TODO: Complete this method.
-    System.out.println("Database has 0 profiles.");
   }
 
   public void createNewProfile(String userName, String age) {
