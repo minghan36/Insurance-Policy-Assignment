@@ -9,6 +9,7 @@ public class InsuranceSystem {
 
   public void printDatabase() {
     // TODO: Complete this method.
+    System.out.println("Database has 0 profiles.");
   }
 
   public void createNewProfile(String userName, String age) {
