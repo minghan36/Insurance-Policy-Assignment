@@ -1,19 +1,19 @@
 package nz.ac.auckland.se281;
 
 public class Profile {
-  private String Username;
-  private int Age;
+  private String userName;
+  private String age;
 
-  public Profile(String Username, int Age) {
-    this.Username = Username;
-    this.Age = Age;
+  public Profile(String userName, String age) {
+    this.userName = userName;
+    this.age = age;
   }
 
-  public String getUsername() {
-    return this.Username;
+  public String getUserName() {
+    return this.userName;
   }
 
-  public int getAge() {
-    return this.Age;
+  public String getAge() {
+    return this.age;
   }
 }
