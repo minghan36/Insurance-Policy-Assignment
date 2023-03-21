@@ -41,13 +41,18 @@ public class InsuranceSystem {
     char[] userNameChar = userName.toCharArray();
     userNameChar[0] = Character.toUpperCase(userNameChar[0]);
     userName = String.valueOf(userNameChar);
+    Profile user = new Profile(userName, age);
+
     if (userName.length()<3){
-
+      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
+    } else if(profileList.contains(user)){
+      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
+    } else if(!(Integer.parseInt(age)>=0)){
+      MessageCli.INVALID_AGE.printMessage(age, userName);
+    } else{
+      profileList.add(user);
+      MessageCli.PROFILE_CREATED.printMessage(userName, age);
     }
-
-    Profile username = new Profile(userName, age);
-    profileList.add(username);
-    // TODO: Complete this method.
   }
 
   public void loadProfile(String userName) {
