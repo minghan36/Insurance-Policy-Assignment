@@ -14,7 +14,7 @@ public class InsuranceSystem {
   public void printDatabase() {
 
     int numberOfProfiles = profileList.size();
-
+    // Using if else statements to print Database message depending on size of ArrayList (number of profiles).
     if (numberOfProfiles == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
     } else if (numberOfProfiles == 1) {
@@ -54,7 +54,8 @@ public class InsuranceSystem {
       MessageCli.INVALID_AGE.printMessage(age, userName);
       return;
     }
-    // Check for name less than 3 letters and integer less than to 0 for age. If both false, new profile can be created and added to arrayList. 
+    // Check for name less than 3 letters and integer less than to 0 for age. If both false, new
+    // profile can be created and added to arrayList.
     if (userName.length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
     } else if (!(Integer.parseInt(age) >= 0)) {
