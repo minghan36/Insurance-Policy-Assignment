@@ -60,7 +60,8 @@ public class InsuranceSystem {
               "ies");
         }
       }
-    } else { // Printing for more than one profile in the database. Searches for if the profile is loaded and how many policies the profile has.
+    } else { // Printing for more than one profile in the database. Searches for if the profile is
+             // loaded and how many policies the profile has.
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(Integer.toString(numberOfProfiles), "s", ":");
       for (int i = 0; i < numberOfProfiles; i++) {
         if (i == loadedProfileIndex) {
@@ -210,7 +211,6 @@ public class InsuranceSystem {
 
   public void createPolicy(PolicyType type, String[] options) {
 
-    // If no profile is loaded. Print error message
     if (loadedProfileIndex < 0) {
       MessageCli.NO_PROFILE_FOUND_TO_CREATE_POLICY.printMessage();
       return;
@@ -301,31 +301,48 @@ public class InsuranceSystem {
         }
         break;
     }
-    // Print success message
+
     MessageCli.NEW_POLICY_CREATED.printMessage(
         String.valueOf(type).toLowerCase(), profileList.get(loadedProfileIndex).getUserName());
   }
 
-  public int totalPremium(Profile profile){
+  public int totalPremium(Profile profile) {
     int totalPremium = 0;
-    for (int i=0; i<profile.getNumberOfPolicies(); i++){
+    for (int i = 0; i < profile.getNumberOfPolicies(); i++) {
       totalPremium += profile.getPolicy(i).getBasePremium();
     }
 
-    // Calculate the totalPremium after discount
-    totalPremium = (totalPremium * discount(profile)/100);
+    totalPremium = (totalPremium * discount(profile) / 100);
     return totalPremium;
   }
 
-  public int discount(Profile profile){
+  public int discount(Profile profile) {
 
     // If statement to check the percentage that the totalPremium should be of the basePremium
-    if(profile.getNumberOfPolicies() < 2){
+    if (profile.getNumberOfPolicies() < 2) {
       return 100;
-    } else if(profile.getNumberOfPolicies() == 2){
+    } else if (profile.getNumberOfPolicies() == 2) {
       return 90;
     } else {
       return 80;
+    }
+  }
+
+  public void printPolicyInfo(Profile profile) {
+
+    int discount = discount(profile);
+
+    // Prints out the information of each policy depending on the type.
+    for (int i = 0; i < profile.getNumberOfPolicies(); i++) {
+      InsurancePolicy policy = profile.getPolicy(i);
+      if (policy instanceof HomePolicy) {
+        HomePolicy homePolicy = (HomePolicy) policy;
+        MessageCli.PRINT_DB_HOME_POLICY.printMessage(
+            homePolicy.getAddress(),
+            String.valueOf(policy.getSumInsured()),
+            String.valueOf(policy.getBasePremium()),
+            String.valueOf(policy.getBasePremium() * discount / 100));
+      }
     }
   }
 }
