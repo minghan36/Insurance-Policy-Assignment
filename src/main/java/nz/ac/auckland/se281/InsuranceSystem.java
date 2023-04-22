@@ -310,9 +310,11 @@ public class InsuranceSystem {
               (int)
                   (sumInsured
                       * ((1
-                          + (((double)Integer.parseInt(profileList.get(loadedProfileIndex).getAge()))
+                              + (((double)
+                                      Integer.parseInt(
+                                          profileList.get(loadedProfileIndex).getAge()))
                                   / 100))
-                              / 100));
+                          / 100));
           InsurancePolicy lifePolicy = new LifePolicy(sumInsured, basePremium);
           profileList.get(loadedProfileIndex).addPolicy(lifePolicy);
         }
@@ -329,7 +331,7 @@ public class InsuranceSystem {
       totalPremium += profile.getPolicy(i).getBasePremium();
     }
 
-    totalPremium = (int)(totalPremium * ((double)discount(profile)) / 100);
+    totalPremium = (int) (totalPremium * ((double) discount(profile)) / 100);
     return totalPremium;
   }
 
