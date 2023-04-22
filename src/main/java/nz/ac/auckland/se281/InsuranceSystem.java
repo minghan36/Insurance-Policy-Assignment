@@ -120,11 +120,40 @@ public class InsuranceSystem {
   }
 
   public void unloadProfile() {
-    // TODO: Complete this method.
+
+    // If statement checking whether a profile is currently loaded. Printing error message if not and unloading if true.
+    if (loadedProfileIndex >= 0) {
+      MessageCli.PROFILE_UNLOADED.printMessage(profileList.get(loadedProfileIndex).getUserName());
+      loadedProfileIndex = -1;
+    } else {
+      MessageCli.NO_PROFILE_LOADED.printMessage();
+    }
   }
 
   public void deleteProfile(String userName) {
-    // TODO: Complete this method.
+    
+    // Changing userName to Title Case
+    userName = userName.toLowerCase();
+    char[] userNameChar = userName.toCharArray();
+    userNameChar[0] = Character.toUpperCase(userNameChar[0]);
+    userName = String.valueOf(userNameChar);
+
+    // For loop to scan for the username and remove from the array list if found. (prints error message if index is same as loaded profile)
+    for (int i = 0; i < profileList.size(); i++) {
+      if (profileList.get(i).getUserName().equalsIgnoreCase(userName)) {
+        if (loadedProfileIndex == i) {
+          MessageCli.CANNOT_DELETE_PROFILE_WHILE_LOADED.printMessage(userName);
+          return;
+        } else {
+        profileList.remove(i);
+        MessageCli.PROFILE_DELETED.printMessage(userName);
+        return;
+        }
+      }
+    }
+
+    //Prints error message if profile is not found.
+    MessageCli.NO_PROFILE_FOUND_TO_DELETE.printMessage(userName);
   }
 
   public void createPolicy(PolicyType type, String[] options) {
