@@ -111,7 +111,7 @@ public class InsuranceSystem {
                 Integer.toString(i + 1),
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
-                String.valueOf(profileList.get(0).getNumberOfPolicies()),
+                String.valueOf(profileList.get(i).getNumberOfPolicies()),
                 "ies",
                 String.valueOf(totalPremium(profileList.get(i))));
             printPolicyInfo(profileList.get(i));
@@ -329,7 +329,7 @@ public class InsuranceSystem {
       totalPremium += profile.getPolicy(i).getBasePremium();
     }
 
-    totalPremium = (totalPremium * discount(profile) / 100);
+    totalPremium = (int)(totalPremium * ((double)discount(profile)) / 100);
     return totalPremium;
   }
 
