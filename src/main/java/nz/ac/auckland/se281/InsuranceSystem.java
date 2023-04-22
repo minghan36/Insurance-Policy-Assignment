@@ -231,7 +231,7 @@ public class InsuranceSystem {
             return;
         }
         //Check through list of policies relevant to a profile
-        for (int i = 0; i <= profileList.get(loadedProfileIndex).getNumberOfPolicies(); i++){
+        for (int i = 0; i < profileList.get(loadedProfileIndex).getNumberOfPolicies(); i++){
           if(profileList.get(loadedProfileIndex).getPolicy(i) instanceof LifePolicy){
             MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(profileList.get(loadedProfileIndex).getUserName());
             return;
@@ -247,5 +247,7 @@ public class InsuranceSystem {
         }
         break;
     }
+    //Print success message
+    MessageCli.NEW_POLICY_CREATED.printMessage(String.valueOf(type), profileList.get(loadedProfileIndex).getUserName());
   }
 }
