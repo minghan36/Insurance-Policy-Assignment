@@ -31,8 +31,9 @@ public class InsuranceSystem {
               profileList.get(0).getUserName(),
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
-              "y", String.valueOf(totalPremium(profileList.get(0))));
-              printPolicyInfo(profileList.get(0));
+              "y",
+              String.valueOf(totalPremium(profileList.get(0))));
+          printPolicyInfo(profileList.get(0));
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "*** ",
@@ -40,8 +41,9 @@ public class InsuranceSystem {
               profileList.get(0).getUserName(),
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
-              "ies", String.valueOf(totalPremium(profileList.get(0))));
-              printPolicyInfo(profileList.get(0));
+              "ies",
+              String.valueOf(totalPremium(profileList.get(0))));
+          printPolicyInfo(profileList.get(0));
         }
       } else {
         if (profileList.get(0).getNumberOfPolicies() == 1) {
@@ -51,8 +53,9 @@ public class InsuranceSystem {
               profileList.get(0).getUserName(),
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
-              "y", String.valueOf(totalPremium(profileList.get(0))));
-              printPolicyInfo(profileList.get(0));
+              "y",
+              String.valueOf(totalPremium(profileList.get(0))));
+          printPolicyInfo(profileList.get(0));
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "",
@@ -60,12 +63,13 @@ public class InsuranceSystem {
               profileList.get(0).getUserName(),
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
-              "ies", String.valueOf(totalPremium(profileList.get(0))));
-              printPolicyInfo(profileList.get(0));
+              "ies",
+              String.valueOf(totalPremium(profileList.get(0))));
+          printPolicyInfo(profileList.get(0));
         }
       }
     } else { // Printing for more than one profile in the database. Searches for if the profile is
-             // loaded and how many policies the profile has.
+      // loaded and how many policies the profile has.
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(Integer.toString(numberOfProfiles), "s", ":");
       for (int i = 0; i < numberOfProfiles; i++) {
         if (i == loadedProfileIndex) {
@@ -76,8 +80,9 @@ public class InsuranceSystem {
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(i).getNumberOfPolicies()),
-                "y", String.valueOf(totalPremium(profileList.get(i))));
-                printPolicyInfo(profileList.get(i));
+                "y",
+                String.valueOf(totalPremium(profileList.get(i))));
+            printPolicyInfo(profileList.get(i));
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "*** ",
@@ -85,8 +90,9 @@ public class InsuranceSystem {
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(i).getNumberOfPolicies()),
-                "ies", String.valueOf(totalPremium(profileList.get(i))));
-                printPolicyInfo(profileList.get(i));
+                "ies",
+                String.valueOf(totalPremium(profileList.get(i))));
+            printPolicyInfo(profileList.get(i));
           }
         } else {
           if (profileList.get(i).getNumberOfPolicies() == 1) {
@@ -96,8 +102,9 @@ public class InsuranceSystem {
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(i).getNumberOfPolicies()),
-                "y", String.valueOf(totalPremium(profileList.get(i))));
-                printPolicyInfo(profileList.get(i));
+                "y",
+                String.valueOf(totalPremium(profileList.get(i))));
+            printPolicyInfo(profileList.get(i));
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "",
@@ -105,8 +112,9 @@ public class InsuranceSystem {
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(0).getNumberOfPolicies()),
-                "ies", String.valueOf(totalPremium(profileList.get(i))));
-                printPolicyInfo(profileList.get(i));
+                "ies",
+                String.valueOf(totalPremium(profileList.get(i))));
+            printPolicyInfo(profileList.get(i));
           }
         }
       }
@@ -302,8 +310,9 @@ public class InsuranceSystem {
               (int)
                   (sumInsured
                       * ((1
-                          + (Integer.parseInt(profileList.get(loadedProfileIndex).getAge()) / 100)
-                              / 100)));
+                          + (((double)Integer.parseInt(profileList.get(loadedProfileIndex).getAge()))
+                                  / 100))
+                              / 100));
           InsurancePolicy lifePolicy = new LifePolicy(sumInsured, basePremium);
           profileList.get(loadedProfileIndex).addPolicy(lifePolicy);
         }
@@ -350,7 +359,7 @@ public class InsuranceSystem {
             String.valueOf(policy.getSumInsured()),
             String.valueOf(policy.getBasePremium()),
             String.valueOf(policy.getBasePremium() * discount / 100));
-      } else if (policy instanceof CarPolicy){
+      } else if (policy instanceof CarPolicy) {
         CarPolicy carPolicy = (CarPolicy) policy;
         MessageCli.PRINT_DB_CAR_POLICY.printMessage(
             carPolicy.getMakeAndModel(),
@@ -358,7 +367,6 @@ public class InsuranceSystem {
             String.valueOf(policy.getBasePremium()),
             String.valueOf(policy.getBasePremium() * discount / 100));
       } else {
-        LifePolicy lifePolicy = (LifePolicy) policy;
         MessageCli.PRINT_DB_LIFE_POLICY.printMessage(
             String.valueOf(policy.getSumInsured()),
             String.valueOf(policy.getBasePremium()),
