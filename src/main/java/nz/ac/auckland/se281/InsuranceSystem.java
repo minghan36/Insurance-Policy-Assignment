@@ -17,8 +17,7 @@ public class InsuranceSystem {
     int numberOfProfiles = profileList.size();
 
     // Using if else statements to print Database message depending on size of ArrayList (number of
-    // profiles).
-    // Print Database for when there is no profiles and only one profile.
+    // profiles). Cases when numberOfProfiles = 0, 1, and more than 1.
     if (numberOfProfiles == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
     } else if (numberOfProfiles == 1) {
@@ -61,7 +60,7 @@ public class InsuranceSystem {
               "ies");
         }
       }
-    } else { // Printing for more than one profile in the database
+    } else { // Printing for more than one profile in the database. Searches for if the profile is loaded and how many policies the profile has.
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(Integer.toString(numberOfProfiles), "s", ":");
       for (int i = 0; i < numberOfProfiles; i++) {
         if (i == loadedProfileIndex) {
@@ -305,5 +304,28 @@ public class InsuranceSystem {
     // Print success message
     MessageCli.NEW_POLICY_CREATED.printMessage(
         String.valueOf(type).toLowerCase(), profileList.get(loadedProfileIndex).getUserName());
+  }
+
+  public int totalPremium(Profile profile){
+    int totalPremium = 0;
+    for (int i=0; i<profile.getNumberOfPolicies(); i++){
+      totalPremium += profile.getPolicy(i).getBasePremium();
+    }
+
+    // Calculate the totalPremium after discount
+    totalPremium = (totalPremium * discount(profile)/100);
+    return totalPremium;
+  }
+
+  public int discount(Profile profile){
+
+    // If statement to check the percentage that the totalPremium should be of the basePremium
+    if(profile.getNumberOfPolicies() < 2){
+      return 100;
+    } else if(profile.getNumberOfPolicies() == 2){
+      return 90;
+    } else {
+      return 80;
+    }
   }
 }
