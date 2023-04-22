@@ -215,6 +215,9 @@ public class InsuranceSystem {
           return;
         } else {
           profileList.remove(i);
+          if (loadedProfileIndex > i) {
+            loadedProfileIndex--;
+          }
           MessageCli.PROFILE_DELETED.printMessage(userName);
           return;
         }
