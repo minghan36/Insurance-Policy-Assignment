@@ -65,13 +65,13 @@ public class InsuranceSystem {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(Integer.toString(numberOfProfiles), "s", ":");
       for (int i = 0; i < numberOfProfiles; i++) {
         if (i == loadedProfileIndex) {
-          if (profileList.get(0).getNumberOfPolicies() == 1) {
+          if (profileList.get(i).getNumberOfPolicies() == 1) {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
                 "*** ",
                 Integer.toString(i + 1),
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
-                String.valueOf(profileList.get(0).getNumberOfPolicies()),
+                String.valueOf(profileList.get(i).getNumberOfPolicies()),
                 "y");
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
@@ -79,17 +79,17 @@ public class InsuranceSystem {
                 Integer.toString(i + 1),
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
-                String.valueOf(profileList.get(0).getNumberOfPolicies()),
+                String.valueOf(profileList.get(i).getNumberOfPolicies()),
                 "ies");
           }
         } else {
-          if (profileList.get(0).getNumberOfPolicies() == 1) {
+          if (profileList.get(i).getNumberOfPolicies() == 1) {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
                 "",
                 Integer.toString(i + 1),
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
-                String.valueOf(profileList.get(0).getNumberOfPolicies()),
+                String.valueOf(profileList.get(i).getNumberOfPolicies()),
                 "y");
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
