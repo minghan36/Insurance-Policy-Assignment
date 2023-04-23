@@ -241,7 +241,6 @@ public class InsuranceSystem {
           // Change options to proper types
           int sumInsured = Integer.parseInt(options[0]);
           String address = options[1];
-          // Set boolean rental
           boolean rental;
           if (options[2].equalsIgnoreCase("yes")) {
             rental = true;
