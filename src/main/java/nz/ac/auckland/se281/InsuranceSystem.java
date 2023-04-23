@@ -238,54 +238,54 @@ public class InsuranceSystem {
     // Switch cases to check the type of policy
     switch (type) {
       case HOME: {
-          // Change options to proper types
-          int sumInsured = Integer.parseInt(options[0]);
-          String address = options[1];
-          boolean rental;
-          if (options[2].equalsIgnoreCase("yes")) {
-            rental = true;
-          } else {
-            rental = false;
-          }
-          // Calculate base premium
-          int basePremium;
-          if (rental) {
-            basePremium = (int) (sumInsured * 0.02);
-          } else {
-            basePremium = (int) (sumInsured * 0.01);
-          }
-          // Create policy and add to profile
-          InsurancePolicy homePolicy = new HomePolicy(sumInsured, address, rental, basePremium);
-          profileList.get(loadedProfileIndex).addPolicy(homePolicy);
+        int sumInsured = Integer.parseInt(options[0]);
+        // Change options to proper types
+        boolean rental;
+        String address = options[1];
+        if (options[2].equalsIgnoreCase("yes")) {
+          rental = true;
+        } else {
+          rental = false;
         }
-        break;
+        // Calculate base premium
+        int basePremium;
+        if (rental) {
+          basePremium = (int) (sumInsured * 0.02);
+        } else {
+          basePremium = (int) (sumInsured * 0.01);
+        }
+        // Create policy and add to profile
+        InsurancePolicy homePolicy = new HomePolicy(sumInsured, address, rental, basePremium);
+        profileList.get(loadedProfileIndex).addPolicy(homePolicy);
+      }
+      break;
       case CAR: {
-          // Change options to proper types
-          int sumInsured = Integer.parseInt(options[0]);
-          String makeAndModel = options[1];
-          String licensePlate = options[2];
-          boolean mechanicalBreakdown;
-          if (options[3].equalsIgnoreCase("yes")) {
-            mechanicalBreakdown = true;
-          } else {
-            mechanicalBreakdown = false;
-          }
-          // Calculate base premium
-          int basePremium;
-          if (Integer.parseInt(profileList.get(loadedProfileIndex).getAge()) < 25) {
-            basePremium = (int) (sumInsured * 0.15);
-          } else {
-            basePremium = (int) (sumInsured * 0.1);
-          }
-          if (mechanicalBreakdown) {
-            basePremium += 80;
-          }
-          InsurancePolicy carPolicy =
-              new CarPolicy(
-                  sumInsured, makeAndModel, licensePlate, mechanicalBreakdown, basePremium);
-          profileList.get(loadedProfileIndex).addPolicy(carPolicy);
+        // Change options to proper types
+        int sumInsured = Integer.parseInt(options[0]);
+        String makeAndModel = options[1];
+        String licensePlate = options[2];
+        boolean mechanicalBreakdown;
+        if (options[3].equalsIgnoreCase("yes")) {
+          mechanicalBreakdown = true;
+        } else {
+          mechanicalBreakdown = false;
         }
-        break;
+        // Calculate base premium
+        int basePremium;
+        if (Integer.parseInt(profileList.get(loadedProfileIndex).getAge()) < 25) {
+          basePremium = (int) (sumInsured * 0.15);
+        } else {
+          basePremium = (int) (sumInsured * 0.1);
+        }
+        if (mechanicalBreakdown) {
+          basePremium += 80;
+        }
+        InsurancePolicy carPolicy =
+            new CarPolicy(
+                sumInsured, makeAndModel, licensePlate, mechanicalBreakdown, basePremium);
+        profileList.get(loadedProfileIndex).addPolicy(carPolicy);
+      }
+      break;
       case LIFE:
         // Checking for restrictions. Age>100 or profile already has a life policy
         if (Integer.parseInt(profileList.get(loadedProfileIndex).getAge()) > 100) {
