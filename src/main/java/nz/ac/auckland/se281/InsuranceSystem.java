@@ -237,11 +237,10 @@ public class InsuranceSystem {
 
     // Switch cases to check the type of policy
     switch (type) {
-      case HOME:
-        {
+      case HOME: {
           // Change options to proper types
           int sumInsured = Integer.parseInt(options[0]);
-          String Address = options[1];
+          String address = options[1];
           // Set boolean rental
           boolean rental;
           if (options[2].equalsIgnoreCase("yes")) {
@@ -257,17 +256,15 @@ public class InsuranceSystem {
             basePremium = (int) (sumInsured * 0.01);
           }
           // Create policy and add to profile
-          InsurancePolicy homePolicy = new HomePolicy(sumInsured, Address, rental, basePremium);
+          InsurancePolicy homePolicy = new HomePolicy(sumInsured, address, rental, basePremium);
           profileList.get(loadedProfileIndex).addPolicy(homePolicy);
         }
         break;
-      case CAR:
-        {
+      case CAR: {
           // Change options to proper types
           int sumInsured = Integer.parseInt(options[0]);
           String makeAndModel = options[1];
           String licensePlate = options[2];
-          // Set boolean mechanicalBreakdown
           boolean mechanicalBreakdown;
           if (options[3].equalsIgnoreCase("yes")) {
             mechanicalBreakdown = true;
@@ -355,6 +352,8 @@ public class InsuranceSystem {
     int discount = discount(profile);
 
     // Prints out the information of each policy depending on the type.
+    // For loop to check each policy of a profile. If statement to check whether the policy is of
+    // type Home, Car or Life.
     for (int i = 0; i < profile.getNumberOfPolicies(); i++) {
       InsurancePolicy policy = profile.getPolicy(i);
       if (policy instanceof HomePolicy) {
